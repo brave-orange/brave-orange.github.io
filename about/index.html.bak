@@ -1,0 +1,66 @@
+<html>
+
+<head>
+<script src="./jquery-2.1.4.min.js" type="text/JavaScript"></script>
+<script type="text/JavaScript">
+    //设定尺寸
+    
+    function first()
+    {
+    var sc= $('#myCanvas').parent();
+    sc.css("height","100%");
+    var canvas=document.getElementById("myCanvas");
+    var width= canvas.width=sc.width();
+    var height=canvas.height=sc.height();
+
+    var content=canvas.getContext("2d");
+
+    //定义字符，坐标数组
+    var letters=new Array(256);
+    var xx=new Array(256);
+    var yy=new Array(256);
+
+    //初始化
+    for(var i=0;i< 256;i++)
+    {
+    //随机生成字符
+    letters[i]=String.fromCharCode(3e4+Math.random()*33);
+    xx[i]=i*30;
+    yy[i]=0;
+    }
+
+    var draw=function()
+    {
+    content.fillStyle="rgb(0,0,0)";
+    content.fillRect(0,0,width,height);
+
+    for(var i=0;i< 256;i++)
+    {
+    for(var z=0;z< 20;z++)
+    {
+    content.fillStyle="rgba(45,251,9"+","+(1-0.05*z)+")"; 
+    content.fillText(letters[i],xx[i],yy[i]-z*10);
+    }
+
+    if(yy[i]>=height)
+    {
+    yy[i]=0-Math.random()*500;
+    }
+    else
+    {
+    yy[i]+=10;
+    }
+    }
+    };
+    setInterval(draw,20);
+
+}
+</script>
+</head>
+<body Onload="first()">
+<div class="post-body" id="wwwtttfff" style="height:50rem;">
+  <canvas id="myCanvas" style="height:50rem;"/>
+</div>
+
+</body>
+</html>
