@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[每日算法1208]]></title>
     <url>%2Fposts%2Faa43c13c.html</url>
-    <content type="text"><![CDATA[今日题目：今天来一题常见的，面试中可能会经常遇到的面试题定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。示例:输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL题解]]></content>
+    <content type="text"><![CDATA[今日题目：今天来一题常见的，面试中可能会经常遇到的面试题定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。示例:输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL题解这一题识别常见的议题算法题，主要考的是对于链表这种数据结构的掌握链表结构如下图所示我们需要做的就是，把每一个节点的Next节点指向他的上一个节点由于这是一个单向链表，所以再遍历链表的时候就需要有一个额外的变量last用来保存每次遍历节点的上一个节点；再将当前的节点的Next指针指向last, 需要注意的是，由于我们更改了当前的元素的Next,原本指向链表的下一个元素就会丢失，所以需要再之前存储下当前节点的下一个节点所以，基本步骤为：缓存当前节点的下一个节点nextPoint将当前节点的Next指向last将last指向当前节点,用于下一次遍历将当前遍历指针指向nextPoint代码实现12345678910111213141516171819202122/** * Definition for singly-linked list. * type ListNode struct &#123; * Val int * Next *ListNode * &#125; */func reverseList(head *ListNode) *ListNode &#123; p:=head var last *ListNode for p != nil&#123; nextPoint := p.Next //缓存下一个节点 if p == head &#123; //第一个节点特殊处理 p.Next = nil &#125;else&#123; p.Next = last //当前节点指向上一个节点 &#125; last = p //缓存上一个节点 p = nextPoint //继续遍历下一个节点 &#125; return last&#125;]]></content>
       <categories>
         <category>算法刷题</category>
       </categories>
